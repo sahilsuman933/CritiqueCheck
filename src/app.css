@@ -44,6 +44,7 @@ main p {
 main p span {
   color: #475569;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 main button {
@@ -54,6 +55,7 @@ main button {
   border-radius: 6px;
   background: #334155;
   position: relative;
+  cursor: pointer;
 }
 
 main button .spinner {
@@ -69,6 +71,7 @@ main button .spinner {
   border-top-color: #334155;
   animation: spin 1s infinite linear;
   z-index: 1;
+  cursor: pointer;
 }
 
 main button .btn-content {

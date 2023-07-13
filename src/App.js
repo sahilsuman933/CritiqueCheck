@@ -9,6 +9,43 @@ const App = () => {
   const [responseText, setResponseText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // Using theb.ai GPT3.5 Model
+  // const handleSubmit = async () => {
+  //   if (isLoading) {
+  //     return;
+  //   }
+
+  //   try {
+  //     setIsLoading(true);
+
+  //     const response = await fetch("https://chatbot.theb.ai/api/chat-process", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         prompt: `Please analyze the following code and provide feedback on style, best practices, and potential improvements:\n${codeSnippet}`,
+  //         options: {},
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       timeout: 120000,
+  //     });
+
+  //     const responseData = await response.text();
+  //     const jsonData = JSON.parse(responseData.split("\n").pop());
+  //     console.log(jsonData?.text);
+
+  //     if (jsonData?.status === "Fail") {
+  //       toast.error("OpenAI Server Error.");
+  //     } else {
+  //       setResponseText(jsonData?.text);
+  //     }
+  //   } catch (error) {
+  //     console.log("Error occurred:", error);
+  //     toast.error("An error occurred.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleSubmit = async () => {
     if (isLoading) {
       return;
@@ -17,26 +54,39 @@ const App = () => {
     try {
       setIsLoading(true);
 
-      const response = await fetch("https://chatbot.theb.ai/api/chat-process", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt: `Please analyze the following code and provide feedback on style, best practices, and potential improvements:\n${codeSnippet}`,
-          options: {},
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        timeout: 120000,
-      });
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "system",
+                content: "You are a helpful assistant.",
+              },
+              {
+                role: "user",
+                content: `Please analyze the following code and provide feedback on style, best practices, and potential improvements:\n${codeSnippet}`,
+              },
+            ],
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+          },
+          timeout: 120000,
+        }
+      );
 
-      const responseData = await response.text();
-      const jsonData = JSON.parse(responseData.split("\n").pop());
-      console.log(jsonData?.text);
+      const responseData = await response.json();
 
-      if (jsonData?.status === "Fail") {
-        toast.error("OpenAI Server Error.");
+      console.log(responseData.choices[0].message.content);
+
+      if (responseData?.error) {
+        toast.error(`Error: ${responseData.error.type}`);
       } else {
-        setResponseText(jsonData?.text);
+        setResponseText(responseData.choices[0].message.content);
       }
     } catch (error) {
       console.log("Error occurred:", error);
@@ -45,7 +95,6 @@ const App = () => {
       setIsLoading(false);
     }
   };
-
   const handleSampleCodeClick = () => {
     setCodeSnippet(`const number = parseInt(prompt('Enter the number of terms: '));
 let n1 = 0, n2 = 1, nextTerm;
@@ -97,7 +146,9 @@ for (let i = 1; i <= number; i++) {
           <p>
             or{" "}
             <span>
-              <label htmlFor="codeFile">Upload your code file</label>
+              <label htmlFor="codeFile" style={{ cursor: "pointer" }}>
+                Upload your code file
+              </label>
             </span>
           </p>
         </div>
