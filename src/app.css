@@ -58,34 +58,6 @@ main button {
   cursor: pointer;
 }
 
-main button .spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  border-top-color: #334155;
-  animation: spin 1s infinite linear;
-  z-index: 1;
-  cursor: pointer;
-}
-
-main button .btn-content {
-  position: relative;
-}
-
-main button.loading .btn-content {
-  visibility: hidden;
-}
-
-main button.loading .spinner {
-  visibility: visible;
-}
-
 main input[type="file"] {
   display: none;
 }
@@ -159,9 +131,11 @@ footer hr {
   main p {
     font-size: 12px;
   }
+
   .btn {
     margin-top: -10px;
   }
+
   main button {
     width: 100%;
   }
@@ -201,12 +175,15 @@ footer hr {
   main p {
     font-size: 12px;
   }
+
   .btn {
     margin-top: -10px;
   }
+
   main button {
     width: 100%;
   }
+
   footer {
     bottom: 5px;
   }
