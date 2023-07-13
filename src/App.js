@@ -84,6 +84,18 @@ for (let i = 1; i <= number; i++) {
     }
   };
 
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const fileContent = event.target.result;
+      setCodeSnippet(fileContent);
+    };
+
+    reader.readAsText(file);
+  };
+
   const isCodeLimitExceeded = codeSnippet.split("\n").length > 300;
 
   return (
@@ -106,7 +118,7 @@ for (let i = 1; i <= number; i++) {
           <p className="note">Note: Code length limit is 300 lines.</p>
         </div>
         <div>
-          <input type="file" id="codeFile" />
+          <input type="file" id="codeFile" onChange={handleFileInputChange} />
           <p>
             or{" "}
             <span>
