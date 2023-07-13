@@ -83,7 +83,7 @@ for (let i = 1; i <= number; i++) {
           Start typing or drop a file into the text area to get started.
         </p>
       </header>
-      <main>
+      <main className="main-content">
         <div>
           <textarea
             placeholder="Enter your code snippet here"

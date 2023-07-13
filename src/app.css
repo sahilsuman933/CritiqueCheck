@@ -12,6 +12,10 @@ header p {
   margin-top: 5px;
 }
 
+.main-content {
+  padding-bottom: 50px; /* Adjust the value as needed */
+}
+
 main div {
   display: flex;
   flex-direction: column;
