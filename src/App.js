@@ -50,6 +50,7 @@ const App = () => {
         toast.error(`Error: ${responseData.error.type}`);
       } else {
         setResponseText(responseData.choices[0].message.content);
+        toast.success("Code Review Successfully Generated!");
       }
     } catch (error) {
       console.log("Error occurred:", error);
