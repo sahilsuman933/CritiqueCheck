@@ -38,4 +38,4 @@ To run this web application locally or deploy it to a server, follow the steps b
 
 ## Demo Video
 
-[Project Overview Video](https://www.youtube.com/embed/g1Sk1yxhTuo)
+[![Project Overview Video](https://img.youtube.com/vi/g1Sk1yxhTuo/0.jpg)](https://www.youtube.com/watch?v=g1Sk1yxhTuo)
