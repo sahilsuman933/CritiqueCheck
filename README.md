@@ -1,5 +1,7 @@
 # CritiqueCheck
 
+Note: Unfortunately, we are unable to provide a code review from our deployed project at this time. This is due to our current lack of credit to maintain usage of the OpenAI API, which our project utilizes.
+
 ### Code Review Automation
 
 This web application utilizes OpenAI's natural language processing capabilities to automate code reviews. It provides an efficient and comprehensive way to review submitted code, offering valuable comments on coding style, adherence to industry standards, and suggestions for further development.
