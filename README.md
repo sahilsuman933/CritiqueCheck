@@ -38,6 +38,7 @@ To run this web application locally or deploy it to a server, follow the steps b
 
 - Access the application : Open your browser and navigate to your localhost to access the code review automation web application.
 
+- Make sure to create a `.env` file and include your OpenAI key. You can refer to the `.env.example` file for an example of how to structure the `.env` file.
 ## Demo Video
 
 [![Project Overview Video](https://img.youtube.com/vi/g1Sk1yxhTuo/0.jpg)](https://www.youtube.com/watch?v=g1Sk1yxhTuo)
